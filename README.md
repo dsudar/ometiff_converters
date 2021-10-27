@@ -7,5 +7,5 @@ cycif2ometiff: utilities to convert a directory of single channel cycic IF image
 
 mihc2ometiff: utilities to convert a directory tree of SVS images, single channel ROI images, metadata, etc. from the Coussens Lab at OHSU into a standard OME-TIFF file
 
-convert2ometiff: a a simple wrapper utility around the basic bioformats2raw/raw2ometiff utilities to convert any bioformats-readable single-file format into a standard OME-TIFF file
+convert2ometiff: simple wrapper utility around the basic bioformats2raw/raw2ometiff utilities to convert any bioformats-readable single-file format into a standard OME-TIFF file
 
