@@ -17,4 +17,7 @@ where <inputfile> is the path to the file 'pyramid.xml' in the MAPS directory tr
 and <outputfile> is the path and basename of the OME-TIFF output file. Note that ome.tif will be appended.
 Use the optional -v flag for more verbose output which is useful in debugging.
 
+Credits:
+Original code that interprets the FEI MAPS output and to generate a single BigTIFF structure by Kevin Loftis at OHSU.
+Current version for generating HTAN-mandated standard BF6 OME-TIFF files and batch utility by Damir Sudar at Quantitative Imaging Systems LLC.
 
