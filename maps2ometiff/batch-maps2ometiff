@@ -1,0 +1,42 @@
+#!/bin/bash
+
+OPTIND=1
+while getopts "v" opt; do
+    case $opt in
+        v)
+            echo "Verbose mode is enabled" >&2
+            verbose=1
+            ;;
+        \?)
+            echo "Invalid option -$OPTARG" >&2
+            exit 1
+            ;;
+        :)
+            echo "Option -$OPTARG requires an argument" >&2
+            exit 1
+            ;;
+     esac
+done
+shift "$(($OPTIND -1))"
+
+anyopts=""
+if [[ $verbose = 1 ]]; then anyopts="${anyopts} -v "; fi
+
+# echo "number of file sets:" $#
+
+# build the sbatch script
+echo "#!/bin/bash" > /tmp/maps2ometiff_sbatch.sh
+echo "#SBATCH --nodes=1 #request 1 node per" >> /tmp/maps2ometiff_sbatch.sh
+echo "#SBATCH --tasks-per-node=1 ##we want our node to do 1 task at the same time" >> /tmp/maps2ometiff_sbatch.sh
+echo "#SBATCH --cpus-per-task=24 ##ask for 24 CPUs per task" >> /tmp/maps2ometiff_sbatch.sh
+echo "#SBATCH --mem-per-cpu=8gb ## request 8 gigabyte per cpu" >> /tmp/maps2ometiff_sbatch.sh
+echo "#SBATCH --time=05:00:00 ## ask for max 5 hours on the node" >> /tmp/maps2ometiff_sbatch.sh
+echo "#SBATCH --output=batchout.txt" >> /tmp/maps2ometiff_sbatch.sh
+echo "#SBATCH " >> /tmp/maps2ometiff_sbatch.sh
+
+# set up srun with an array task list
+echo "srun maps2ometiff.py ${anyopts} \"$1\" \"$2\"" >> /tmp/maps2ometiff_sbatch.sh
+
+# now submit it to sbatch
+sbatch /tmp/maps2ometiff_sbatch.sh
+
