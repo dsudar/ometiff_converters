@@ -4,17 +4,17 @@ Purpose:
 A Python command line utility to convert the output from the FEI MAPS program, a complex directory structure of tile images and associated metadata, into a single standard OME-TIFF file following the BF6 pyramid scheme.
 
 Requirements:
-maps2ometiff is a Python3 script requiring version 3.6. It relies on a number of standard Python libraries such as PIL, tifffile, numpy.
+maps2ometiff.py is a Python3 script requiring version 3.6. It relies on a number of standard Python libraries such as PIL, tifffile, numpy.
 For the actual conversion to OME-TIFF it uses the Glencoe Software bioformats2raw/raw2ometiff Java utilities described and available from: https://github.com/glencoesoftware/bioformats2raw and https://github.com/glencoesoftware/raw2ometiff
 Install the Glencoe programs so they are in the user's execution path before running maps2ometiff
 
-This repo also includes batch_map2ometiff, which is a bash utility script specific to OHSU's Exacloud compute cluster controlled with SLURM, to allow batch submission of maps2ometiff jobs.
+This repo also includes batch_maps2ometiff, which is a bash utility script specific to OHSU's Exacloud compute cluster controlled with SLURM, to allow batch submission of maps2ometiff jobs.
 
 Usage:
 maps2ometiff.py -v <inputfile> <outputfile>
 
 where <inputfile> is the path to the file 'pyramid.xml' in the MAPS directory tree
-and <outputfile> is the path and basename of the OME-TIFF output file. Note that ome.tif will be appended.
+and <outputfile> is the path and basename of the OME-TIFF output file. Note that .ome.tif will be appended by the script.
 Use the optional -v flag for more verbose output which is useful in debugging.
 
 Credits:

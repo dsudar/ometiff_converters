@@ -1,0 +1,22 @@
+Project: convert2ometiff
+
+Purpose:
+A Python command line utility to convert any single-file bioformats-compatible file, into a single standard OME-TIFF file following the BF6 pyramid scheme.
+
+Requirements:
+convert2ometiff.py is a Python3 script requiring version 3.6. It relies on a number of standard Python libraries such as PIL, tifffile, numpy.
+For the actual conversion to OME-TIFF it uses the Glencoe Software bioformats2raw/raw2ometiff Java utilities described and available from: https://github.com/glencoesoftware/bioformats2raw and https://github.com/glencoesoftware/raw2ometiff
+Install the Glencoe programs so they are in the user's execution path before running convert2ometiff
+
+This repo also includes batch_convert2ometiff, which is a bash utility script specific to OHSU's Exacloud compute cluster controlled with SLURM, to allow batch submission of convert2ometiff jobs.
+
+Usage:
+convert2ometiff.py -v <inputfile> <outputfile>
+
+where <inputfile> is the path to the input file
+and <outputfile> is the path and basename of the OME-TIFF output file. Note that ome.tif will be appended.
+Use the optional -v flag for more verbose output which is useful in debugging.
+
+Credits:
+Current version for generating HTAN-mandated standard BF6 OME-TIFF files and batch utility by Damir Sudar at Quantitative Imaging Systems LLC.
+
