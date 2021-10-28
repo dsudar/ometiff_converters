@@ -1,0 +1,30 @@
+Project: cycif2ometiff
+
+Purpose:
+A set of Python command line utilities to convert the output from the Chin Lab cyclic IF workflow, a directory structure of single channel images and associated metadata, into a single standard OME-TIFF file following the BF6 pyramid scheme.
+
+Requirements:
+For convenience a bash script, cycif2ometiff.sh, wraps the Python script and does some of the file manipulation.
+cycif2ometiff.py is a Python3 script requiring version 3.6. It relies on a number of standard Python libraries such as libtiff, Pandas.
+For the actual conversion to OME-TIFF it uses the Glencoe Software bioformats2raw/raw2ometiff Java utilities described and available from: https://github.com/glencoesoftware/bioformats2raw and https://github.com/glencoesoftware/raw2ometiff
+Install the Glencoe programs so they are in the user's execution path before running cycif2ometiff.sh
+
+This repo also includes batch_cycif2ometiff, which is a bash utility script specific to OHSU's Exacloud compute cluster controlled with SLURM, to allow batch submission of cycif2ometiff jobs.
+
+Also included is a utility script cycifcheck.sh which checks the input directory for missing metadata, incorrect filenames, duplications, etc.
+
+Usage:
+cycif2ometiff.sh -v -p <input_dir>
+
+where <input_dir> is the path to the directory containing the individual channel files. Its name will be used to construct the output filename(s) as a sub-directory of the <input_dir>
+Use the optional -v flag for more verbose output which is useful in debugging.
+Use the optional -p flag to set the pixel spacing if different from 0.325
+
+cycifcheck.sh -v <input_dir>
+where <input_dir> is the path to the directory containing the individual channel files.
+Use the optional -v flag for more verbose output which is useful in debugging.
+
+
+Credits:
+Current version for generating HTAN-mandated standard BF6 OME-TIFF files and batch utility by Damir Sudar at Quantitative Imaging Systems LLC.
+
